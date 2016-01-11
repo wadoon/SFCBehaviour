@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>SequentialFunctionChart</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>build</name>
+			<type>2</type>
+			<location>C:/Users/Kivu/Downloads/z3-master/build</location>
+		</link>
+		<link>
+			<name>build/Autopatch.bat</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AppData/Local/Temp/Rar$DRa0.404/Autopatch.bat</locationURI>
+		</link>
+		<link>
+			<name>build/asterisk11v2.vcdiff</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AppData/Local/Temp/Rar$DRa0.404/asterisk11v2.vcdiff</locationURI>
+		</link>
+		<link>
+			<name>build/xdelta3.exe</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/AppData/Local/Temp/Rar$DRa0.404/xdelta3.exe</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>
