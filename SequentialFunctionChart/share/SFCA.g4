@@ -1,13 +1,15 @@
-grammar sfca;
+grammar SFCA;
 
 @header {
 import java.util.*;
 
-import SFC.*;
-import SFC.Transition;
+import edu.kit.iti.sfc.ast.BinOperator;
+import edu.kit.iti.sfc.ast.*;
+import edu.kit.iti.sfc.ast.SFCA;
+import edu.kit.iti.sfc.ast.Transition;
 }
 
-import declaration;
+import Declaration;
 
 start_sfc locals [ SFCA ast = new SFCA(), Map<String,Variable> ids = new HashMap<String,Variable>() ]
 :

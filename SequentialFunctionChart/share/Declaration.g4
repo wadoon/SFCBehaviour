@@ -1,9 +1,8 @@
-grammar declaration;
+grammar Declaration;
 
 @header {
 import java.util.*;
 
-import SFC.*;
 }
 
 /** Fragments for case insensitivity */
