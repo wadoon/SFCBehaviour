@@ -7,6 +7,7 @@ import java.util.Queue;
 import ExTree.ExecutionEdge;
 import ExTree.ExecutionNode;
 import ExTree.ExecutionTree;
+import SFC.EmptyExpr;
 import TSG.TwinEdge;
 import TSG.TwinGraph;
 import TSG.TwinNode;
@@ -38,12 +39,12 @@ public class GraphMatcher {
 					if(x.getLeft() == null){
 						tn = new TwinNode(null,rightTree.getSingleNode(x.getRight().getDestPath()));
 						vreturn.add(tn);
-						ereturn.add(new TwinEdge(tx.getIdentifier(),tn.getIdentifier(),null,x.getRight().getGuard()));
+						ereturn.add(new TwinEdge(tx.getIdentifier(),tn.getIdentifier(),new EmptyExpr(),x.getRight().getGuard()));
 						addNoMatch(tn,vreturn,ereturn,rightTree);
 					}else{
 						tn = new TwinNode(leftTree.getSingleNode(x.getLeft().getDestPath()),null);
 						vreturn.add(tn);
-						ereturn.add(new TwinEdge(tx.getIdentifier(),tn.getIdentifier(),x.getLeft().getGuard(),null));
+						ereturn.add(new TwinEdge(tx.getIdentifier(),tn.getIdentifier(),x.getLeft().getGuard(),new EmptyExpr()));
 						addNoMatch(tn,vreturn,ereturn,leftTree);
 					}
 				}else{
@@ -80,26 +81,24 @@ public class GraphMatcher {
 				for(ExecutionEdge edge : list){
 					TwinNode rn = new TwinNode(null,ext.getSingleNode(edge.getDestPath()));
 					vs.add(rn);
-					es.add(new TwinEdge(t.getIdentifier(),rn.getIdentifier(),null,edge.getGuard()));
+					es.add(new TwinEdge(t.getIdentifier(),rn.getIdentifier(),new EmptyExpr(),edge.getGuard()));
 					queue.add(rn);
 				}
 			}
 		}else{
 			Queue<TwinNode> queue = new LinkedList<TwinNode>();
 			queue.add(tn);
-			while(!queue.isEmpty()){
 				TwinNode t = queue.poll();
 				ExecutionNode x = t.getLeft();
 				List<ExecutionEdge> list= ext.getSuccessor(x);
 				for(ExecutionEdge edge : list){
 					TwinNode rn = new TwinNode(ext.getSingleNode(edge.getDestPath()),null);
 					vs.add(rn);
-					es.add(new TwinEdge(t.getIdentifier(),rn.getIdentifier(),edge.getGuard(),null));
+					es.add(new TwinEdge(t.getIdentifier(),rn.getIdentifier(),edge.getGuard(),new EmptyExpr()));
 					queue.add(rn);
 				}
 			}
 		}
-	}
 	
 	private TwinNode addAheadMatch(TwinNode prec,TransitionMatch tm, List<TwinNode> vs,List<TwinEdge> es, ExecutionTree left, ExecutionTree right){
 		//right side
@@ -109,22 +108,22 @@ public class GraphMatcher {
 			if(!ex.getDestPath().equals(tm.getRight().getDestPath())){
 				TwinNode rn = new TwinNode(null,right.getSingleNode(ex.getDestPath()));
 				vs.add(rn);
-				es.add(new TwinEdge(prev.getIdentifier(),rn.getIdentifier(),null,ex.getGuard()));
+				es.add(new TwinEdge(prev.getIdentifier(),rn.getIdentifier(),new EmptyExpr(),ex.getGuard()));
 				prev = rn;
 			}
 		}
-		es.add(new TwinEdge(prev.getIdentifier(),last.getIdentifier(),null,tm.getRight().getGuard()));
+		es.add(new TwinEdge(prev.getIdentifier(),last.getIdentifier(),new EmptyExpr(),tm.getRight().getGuard()));
 		//left side
 		prev = prec;
 		for(ExecutionEdge ex : left.getPath(prec.getLeft(), left.getSingleNode(tm.getLeft().getDestPath()))){
 			if(!ex.getDestPath().equals(tm.getLeft().getDestPath())){
 				TwinNode rn = new TwinNode(left.getSingleNode(ex.getDestPath()),null);
 				vs.add(rn);
-				es.add(new TwinEdge(prev.getIdentifier(),rn.getIdentifier(),ex.getGuard(),null));
+				es.add(new TwinEdge(prev.getIdentifier(),rn.getIdentifier(),ex.getGuard(),new EmptyExpr()));
 				prev = rn;
 			}
 		}
-		es.add(new TwinEdge(prev.getIdentifier(),last.getIdentifier(),tm.getLeft().getGuard(),null));
+		es.add(new TwinEdge(prev.getIdentifier(),last.getIdentifier(),tm.getLeft().getGuard(),new EmptyExpr()));
 		vs.add(last);
 		return(last);
 	}

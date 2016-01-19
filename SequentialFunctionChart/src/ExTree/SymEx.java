@@ -51,7 +51,7 @@ public final class SymEx {
 			}
 
 			prevstate = new HashMap<Variable,Expression>(n.getState());
-			prevstate = symInput(prevstate,k,sfca.getInput());
+			prevstate = symInput(prevstate,k-1,sfca.getInput());
 			
 			
 			for(Transition t : sfca.getTrans()){

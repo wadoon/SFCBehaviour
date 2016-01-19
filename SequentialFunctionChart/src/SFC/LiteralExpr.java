@@ -3,6 +3,12 @@ package SFC;
 public class LiteralExpr extends Expression {
 	private String lit;
 	private Vartype type;
+	
+	
+	public LiteralExpr() {
+		super();
+	}
+	
 	public LiteralExpr(String lit, Vartype type) {
 		super();
 		this.lit = lit;
@@ -21,6 +27,7 @@ public class LiteralExpr extends Expression {
 		this.type = type;
 	}
 	
+	@Override
 	public String printExpr(){
 		return(lit);
 	}

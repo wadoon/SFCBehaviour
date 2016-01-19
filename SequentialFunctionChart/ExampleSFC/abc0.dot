@@ -1,0 +1,10 @@
+digraph abc0{
+init[shape = record,label ="{init||
+a:=2;
+output:=1;
+}"]
+s2[shape = record,label ="{s2||
+output:=2;
+}"]
+init->s2[label="(input) = (2)"]
+}

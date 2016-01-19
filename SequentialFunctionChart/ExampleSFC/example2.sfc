@@ -1,0 +1,22 @@
+SFC abc0
+	VAR a : INT; END_VAR
+	VAR_INPUT input : INT; END_VAR
+	VAR_OUTPUT output : INT; END_VAR
+
+	
+	step init 		
+		on active action 
+			a:=2
+			output := 1
+		end_action 		
+	end_step
+	
+	step s2 		
+		on active action 
+			output:=2
+		end_action 		
+	end_step
+	
+	
+	GOTO input = 2 :: init -> s2
+END_SFC

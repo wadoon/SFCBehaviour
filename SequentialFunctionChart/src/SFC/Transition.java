@@ -5,6 +5,10 @@ public class Transition {
 	private Expression guard;
 	private String destination;
 	
+	public Transition() {
+		super();
+	}
+	
 	public Transition(String source, Expression guard, String destination) {
 		super();
 		this.source = source;
@@ -12,8 +16,6 @@ public class Transition {
 		this.destination = destination;
 	}
 	
-	
-
 	public String getSource() {
 		return source;
 	}

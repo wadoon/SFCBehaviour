@@ -13,8 +13,8 @@ import SFC.VariableExpr;
 
 public class SimpleTransitionMatcher implements TransitionMatcher{
 
+	@Override
 	public List<TransitionMatch> match(List<ExecutionEdge> lsucc, List<ExecutionEdge> rsucc,ExecutionTree lt, ExecutionTree rt){
-
 		
 		List<TransitionMatch> result = new ArrayList<TransitionMatch>();
 		for(ExecutionEdge l : lsucc){

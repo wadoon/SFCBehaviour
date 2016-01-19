@@ -2,6 +2,11 @@ package SFC;
 
 public class VariableExpr extends Expression {
 	private Variable identifier;
+	
+	public VariableExpr() {
+		super();
+	}
+	
 	public VariableExpr(Variable id) {
 		super();
 		this.identifier = id;
@@ -13,6 +18,7 @@ public class VariableExpr extends Expression {
 		this.identifier = id;
 	}
 
+	@Override
 	public String printExpr(){
 		return(identifier.getName());
 	}

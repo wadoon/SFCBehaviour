@@ -28,6 +28,11 @@ public class BinOpExpr extends Expression {
 	public void setRight(Expression right) {
 		this.right = right;
 	}
+	
+	
+	public BinOpExpr() {
+		super();
+	}
 
 	public BinOpExpr(Expression left, BinOperator op, Expression right) {
 		super();
@@ -36,8 +41,9 @@ public class BinOpExpr extends Expression {
 		this.right = right;
 	}
 	
+	@Override
 	public String printExpr(){
-		return("(" + left.printExpr() + ")" + " " + op.toString() + " " + "(" + right.printExpr() + ")");
+		return("(" + left.printExpr() + ")" + " " + op.symbol + " " + "(" + right.printExpr() + ")");
 	}
 	
 

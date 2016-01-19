@@ -3,6 +3,11 @@ package SFC;
 public class UnOpExpr extends Expression {
 	private Expression expr;
 	private UnOperator op;
+	
+	
+	public UnOpExpr() {
+		super();
+	}
 	public UnOpExpr(Expression expr, UnOperator op) {
 		super();
 		this.expr = expr;
@@ -21,8 +26,9 @@ public class UnOpExpr extends Expression {
 		this.op = op;
 	}
 	
+	@Override
 	public String printExpr(){
-		return(op.toString() + " " + "(" + expr.printExpr() + ")");
+		return(op.symbol+ " " + "(" + expr.printExpr() + ")");
 	}
 	
 

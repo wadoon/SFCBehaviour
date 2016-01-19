@@ -1,6 +1,5 @@
 package BehaviourChecker;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ public final class SMTUtil {
 		for(Variable xs : x){
 			if(xs.isIn()){
 				if(xs.getType().equals(Vartype.BOOL)){
-					result.put(xs.getName()+"Åòk",ctx.mkBoolConst(xs.getName()+"Åòk"));
+					result.put(xs.getName()+"Åò"+k,ctx.mkBoolConst(xs.getName()+"Åò"+k));
 				}
 				if(xs.getType().equals(Vartype.INT)){
 					result.put(xs.getName()+"Åò"+k,ctx.mkIntConst(xs.getName()+"Åò"+k));
@@ -41,7 +40,7 @@ public final class SMTUtil {
 				if(isNumeric(((LiteralExpr) g).getLit())){
 					return(ctx.mkInt(Integer.parseInt(((LiteralExpr) g).getLit())));
 				}else{
-					return((IntExpr)vardecl.get(((LiteralExpr) g).getLit()));
+					return(vardecl.get(((LiteralExpr) g).getLit()));
 				}
 			case BOOL:
 				if(((LiteralExpr) g).getLit().equals("TRUE")){
@@ -49,13 +48,13 @@ public final class SMTUtil {
 				}else{
 					if(((LiteralExpr) g).getLit().equals("FALSE")){
 						return(ctx.mkFalse());
-					}else{
-						return(((BoolExpr)(vardecl.get(((LiteralExpr) g).getLit()))));
+					}else
+						return(((vardecl.get(((LiteralExpr) g).getLit()))));
 					}
 				}
 			}
 			
-		}else{
+		else{
 			if (g instanceof UnOpExpr){
 				switch(((UnOpExpr) g).getOp()){
 				case MINUS :	

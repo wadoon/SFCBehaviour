@@ -4,6 +4,10 @@ public class Assignment {
 	private Variable var;
 	private Expression expr;
 	
+	public Assignment() {
+		super();
+	}
+	
 	public Assignment(Variable var, Expression expr) {
 		super();
 		this.var = var;

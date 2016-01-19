@@ -1,0 +1,19 @@
+digraph abc1_tree{
+init[shape = record,label ="{init||
+output_left:=1;
+input_left:=input_left˜0;
+a_left:=3;
+}"]
+init_s1[shape = record,label ="{s1||
+output_left:=3;
+input_left:=input_left˜0;
+a_left:=3;
+}"]
+init_s3[shape = record,label ="{s3||
+output_left:=10;
+input_left:=input_left˜0;
+a_left:=3;
+}"]
+init->init_s1[label="(2) = (input_left˜0)"]
+init->init_s3[label="(input_left˜0) = (3)"]
+}

@@ -8,6 +8,13 @@ public class Step {
 	private boolean init;
 	private List<Assignment> actions;
 	
+	public Step() {
+		super();
+		this.init = false;
+		this.actions = new ArrayList<Assignment>();
+
+	}
+	
 	public Step(String name, boolean init, List<Assignment> actions) {
 		super();
 		this.name = name;

@@ -1,5 +1,6 @@
 package SFC;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +12,14 @@ public class SFCA {
 	private List<Step> steps;
 	private List<Transition> trans;
 	
-
+	public SFCA() {
+		super();
+		this.variables = new ArrayList<Variable>();
+		this.steps = new ArrayList<Step>();
+		this.trans = new ArrayList<Transition>();
+		
+	}
+	
 	public SFCA(String name, List<Variable> variables, List<Step> steps, List<Transition> trans) {
 		super();
 		this.name = name;
