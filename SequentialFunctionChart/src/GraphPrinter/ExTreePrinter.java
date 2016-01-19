@@ -11,6 +11,9 @@ import SFC.*;
 import ExTree.*;
 
 public class ExTreePrinter {
+	private static final char CHAR_K = 0;
+	private static final char CHAR_I = 0;
+
 	public static void print(ExecutionTree extree, String path,String name){
 		try {
 		      File file = new File(path+"/"+name+".dot");
@@ -21,14 +24,15 @@ public class ExTreePrinter {
 		      for(ExecutionNode ex: extree.getV()){
 		    	  arr.add(ex.getPath().replace('%', '_') + "[shape = record,label =\"{" + ex.getStep() + "||");
 		    	  for(Map.Entry<Variable, Expression> sig: ex.getState().entrySet()){
-		    		  arr.add(sig.getKey().getName() + ":=" + sig.getValue().printExpr().replace('˜', '@')+";\\n");
+		    		  arr.add(sig.getKey().getName() + ":=" + sig.getValue().printExpr().replace(CHAR_I, '@')+";\\n");
 
 		    	  }
 		    	  arr.add("}\"]");
 		      }
 		      
 		      for(ExecutionEdge t:extree.getE()){
-		    	  arr.add(t.getSourcePath().replace('%','_') + "->" + t.getDestPath().replace('%','_') + "[label=\"" + t.getGuard().printExpr().replace('˜', '@')+ "\"]");
+		    	  arr.add(t.getSourcePath().replace('%','_') + "->" + t.getDestPath().replace('%','_') +
+		    			  "[label=\"" + t.getGuard().printExpr().replace(CHAR_K, '@')+ "\"]");
 		      }
 		      arr.add("}");
 		      FileWriter writer = new FileWriter(path+"/"+name+".dot"); 

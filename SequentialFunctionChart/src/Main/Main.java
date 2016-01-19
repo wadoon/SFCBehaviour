@@ -20,7 +20,7 @@ import TSG.*;
 import edu.kit.iti.sfc.input.*;
 
 public class Main {
-	public static String run(String leftSideFilename, String rightSideFilename, String outputPath, int bound) {
+	public static String run(String leftSideFilename, String rightSideFilename, String outputPath, int bound) throws IOException {
 		CharStream stream = new ANTLRFileStream(leftSideFilename);
 		SFCALexer lexer = new SFCALexer(stream);
 		SFCAParser parser = new SFCAParser(new CommonTokenStream(lexer));
@@ -46,7 +46,6 @@ public class Main {
 		//
 		List<VariableDuo> input = new ArrayList<VariableDuo>();
 		List<VariableDuo> output = new ArrayList<VariableDuo>();
-
 		for (Variable in : a.getInput()) {
 			for (Variable in2 : b.getInput()) {
 				if (in.getName().equals(in2.getName())) {
@@ -67,12 +66,12 @@ public class Main {
 		ExecutionTree ex_a = SymEx.executeSFC(a, bound);
 		ExecutionTree ex_b = SymEx.executeSFC(b, bound);
 
-		ExTreePrinter.print(ex_a, output, a.getName() + "_tree");
-		ExTreePrinter.print(ex_b, output, b.getName() + "_tree");
+		ExTreePrinter.print(ex_a, outputPath, a.getName() + "_tree");
+		ExTreePrinter.print(ex_b, outputPath, b.getName() + "_tree");
 		GraphMatcher gm = new GraphMatcher(new SMTTransitionMatcher());
 		TwinGraph tg = gm.matchGraph(ex_a, ex_b);
 
-		TwinGraphPrinter.print(tg, output, "Twingraph");
+		TwinGraphPrinter.print(tg, outputPath, "Twingraph");
 
 		BehaviourChecker bc = new BehaviourChecker(tg, a, b, output, input);
 
@@ -82,7 +81,7 @@ public class Main {
 			System.out.println("No Difference in Behaviour found");
 		} else {
 			System.out.println(result.size() + " different behaving point(s) found");
-			DifferencePrinter.print(result, output);
+			DifferencePrinter.print(result, outputPath);
 		}
 
 		return "";
