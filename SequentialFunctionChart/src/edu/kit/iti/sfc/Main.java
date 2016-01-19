@@ -21,20 +21,17 @@ import edu.kit.iti.sfc.printing.TwinGraphPrinter;
 import edu.kit.iti.sfc.tsg.*;
 
 public class Main {
+	public static SFCA readSFCA(String filename) throws IOException {
+        CharStream stream = new ANTLRFileStream(filename);
+        SFCALexer lexer = new SFCALexer(stream);
+        SFCAParser parser = new SFCAParser(new CommonTokenStream(lexer));
+        SFCAParser.Start_sfcContext sfccontext = parser.start_sfc();
+        return sfccontext.ast;
+    }
+
 	public static String run(String leftSideFilename, String rightSideFilename, String outputPath, int bound) throws IOException {
-		CharStream stream = new ANTLRFileStream(leftSideFilename);
-		SFCALexer lexer = new SFCALexer(stream);
-		SFCAParser parser = new SFCAParser(new CommonTokenStream(lexer));
-
-		SFCAParser.Start_sfcContext sfccontext = parser.start_sfc();
-		SFCA a = sfccontext.ast;
-
-		stream = new ANTLRFileStream(rightSideFilename);
-		lexer = new SFCALexer(stream);
-		parser = new SFCAParser(new CommonTokenStream(lexer));
-
-		sfccontext = parser.start_sfc();
-		SFCA b = sfccontext.ast;
+        SFCA a = readSFCA(leftSideFilename);
+        SFCA b = readSFCA(rightSideFilename);
 
 		//
 		a.getSteps().get(0).setInit(true);
@@ -69,6 +66,7 @@ public class Main {
 
 		ExTreePrinter.print(ex_a, outputPath, a.getName() + "_tree");
 		ExTreePrinter.print(ex_b, outputPath, b.getName() + "_tree");
+
 		GraphMatcher gm = new GraphMatcher(new SMTTransitionMatcher());
 		TwinGraph tg = gm.matchGraph(ex_a, ex_b);
 
@@ -91,7 +89,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		String filename = "ExampleSFC/example.sfc";
 		String filename2 ="ExampleSFC/example2.sfc";
-		String path = "ExampleSFC";
+		String path = "output";
 		int bound = 10;
 		if (args.length == 4) {
 			System.out.println("loading");
